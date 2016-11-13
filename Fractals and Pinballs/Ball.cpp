@@ -1,6 +1,6 @@
 #include "Ball.h"
 
-Ball::Ball(std::vector<int> currentCentre,int radius, std::vector<int> nextCentre, std::vector<int> velocity, std::vector<int> acceleration) {
+Ball::Ball(std::vector<double> currentCentre,double radius, std::vector<double> nextCentre, std::vector<double> velocity, std::vector<double> acceleration) {
 	Ball::currentCentre = currentCentre;
 	Ball::nextCentre = nextCentre;
 	Ball::velocity = velocity;

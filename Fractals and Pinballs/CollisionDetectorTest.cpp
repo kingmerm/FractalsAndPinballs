@@ -4,7 +4,7 @@
 #include <math.h>
 #include "Ball.h"
 #include "Rectangle.h"
-
+#include <iostream>
 int findClosestPoint(int value, int min, int max) {
 	int distFromMinExtent = abs(min - value);
 	int distFromMaxExtent = abs(max - value);
@@ -26,35 +26,35 @@ bool collisionCheck(std::shared_ptr<Ball> pinball, std::shared_ptr<Rectangle> ob
 	int distanceFromCircleSquared = (int)pow(xDistance,2) + (int)pow(yDistance,2);
 	return (distanceFromCircleSquared < (int)pow(pinball->radius,2));
 }
-
-int main(int argv, char**argsc) {
-	/*initial parameters of simulation*/
-	std::vector<int> currentBallCentre = { 0,0 };
-	std::vector<int> nextBallCentre = { 0,0 };
-	std::vector<int> ballVelocity = { 1,0 };
-	std::vector<int> acceleration = { 1,0 };
-	int ballRadius = 2;
-	auto pinball = std::make_shared<Ball>(currentBallCentre, ballRadius, nextBallCentre, ballVelocity, acceleration);
-	std::vector<int> objTopLeftCorner = { 20,4 }; /*Obj rectangle with centre x,y*/
-	auto object = std::make_shared<Rectangle>(objTopLeftCorner, 2, 2);
-	int thetaFromXDir = 0; /*parallel with x direction*/
-	int currentTime = 0;
-	int dt = 1;
-	bool collision = false;
-	while (!collision) {
-		// check if we can move our ball without collision
-		pinball->nextCentre[0] = pinball->currentCentre[0] + pinball->velocity[0] * dt;
-		if (!collisionCheck(pinball,object)) {
-			//
-			pinball->velocity[0] += dt; //v(i+1) = v(t) + acc*dt
-			pinball->currentCentre[0] = pinball->nextCentre[0];
-			currentTime += dt;
-			printf("NO COLLISION AT CENTRE (%d,%d) \n", pinball->currentCentre[0], pinball->currentCentre[1]);
-		}
-		else
-		{
-			printf("COLLISION WHEN CENTRE OF BALL AT (%d,%d) \n", pinball->currentCentre[0], pinball->currentCentre[1]);
-			collision = true;
-		}
-	}
-}
+//
+//int main(int argv, char**argsc) {
+//	/*initial parameters of simulation*/
+//	std::vector<int> currentBallCentre = { 0,0 };
+//	std::vector<int> nextBallCentre = { 0,0 };
+//	std::vector<int> ballVelocity = { 1,0 };
+//	std::vector<int> acceleration = { 1,0 };
+//	int ballRadius = 2;
+//	auto pinball = std::make_shared<Ball>(currentBallCentre, ballRadius, nextBallCentre, ballVelocity, acceleration);
+//	std::vector<int> objTopLeftCorner = { 20,2 }; /*Obj rectangle with centre x,y*/
+//	auto object = std::make_shared<Rectangle>(objTopLeftCorner, 2, 2);
+//	int thetaFromXDir = 0; /*parallel with x direction*/
+//	int currentTime = 0;
+//	int dt = 1;
+//	bool collision = false;
+//	while (!collision) {
+//		// check if we can move our ball without collision
+//		pinball->nextCentre[0] = pinball->currentCentre[0] + pinball->velocity[0] * dt;
+//		if (!collisionCheck(pinball,object)) {
+//			//
+//			pinball->velocity[0] += dt; //v(i+1) = v(t) + acc*dt
+//			pinball->currentCentre[0] = pinball->nextCentre[0];
+//			currentTime += dt;
+//			printf("NO COLLISION AT CENTRE (%d,%d) \n", pinball->currentCentre[0], pinball->currentCentre[1]);
+//		}
+//		else
+//		{
+//			printf("COLLISION WHEN CENTRE OF BALL AT (%d,%d) \n", pinball->currentCentre[0], pinball->currentCentre[1]);
+//			collision = true;
+//		}
+//	}
+//}
